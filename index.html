@@ -30,30 +30,41 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t1);font-
 .logo-mark{width:32px;height:32px;background:var(--ac);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:11px;color:#1a1005;letter-spacing:-.3px}
 .logo-text{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--t1);letter-spacing:-.3px}
 .logo-text span{color:var(--ac)}
-.ntab{padding:6px 14px;border-radius:8px;border:none;background:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--t2);cursor:pointer;transition:all .15s}
-.ntab.active{color:var(--t1);background:var(--s2)}
 .nav-tabs{display:flex;gap:2px;margin-left:8px}
+.ntab{padding:6px 14px;border-radius:8px;border:none;background:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--t2);cursor:pointer;transition:all .15s}
+.ntab:hover{color:var(--t1);background:var(--s2)}
+.ntab.active{color:var(--t1);background:var(--s2)}
 .nav-spacer{flex:1}
 .nav-search{display:flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--b1);border-radius:9px;padding:0 14px;height:34px;width:200px;transition:all .25s}
-.nav-search input{background:none;border:none;outline:none;color:var(--t1);width:100%}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:9px;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;border:1px solid transparent}
-.btn-accent{background:var(--ac);color:#1a1005;font-weight:600}
+.nav-search input{background:none;border:none;outline:none;color:var(--t1);font-family:'DM Sans',sans-serif;font-size:13px;width:100%}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;border:1px solid transparent;white-space:nowrap}
+.btn-accent{background:var(--ac);border-color:var(--ac);color:#1a1005;font-weight:600}
 .hero{max-width:1240px;margin:0 auto;padding:60px 24px 52px;display:grid;grid-template-columns:1fr 360px;gap:56px;align-items:center}
-.hero-h1{font-family:'Syne',sans-serif;font-size:52px;line-height:1.08;font-weight:800;margin-bottom:16px}
+.hero-h1{font-family:'Syne',sans-serif;font-size:52px;line-height:1.08;font-weight:800;letter-spacing:-.03em;margin-bottom:16px}
 .hstats{display:flex;border:1px solid var(--b1);border-radius:var(--r);overflow:hidden}
 .hstat{padding:14px 22px;flex:1;border-right:1px solid var(--b1)}
+.hstat:last-child{border-right:none}
+.hstat-v{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--t1);line-height:1;margin-bottom:3px}
+.hstat-l{font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em}
 .main{max-width:1240px;margin:0 auto;padding:0 24px 80px}
-.toolbar{display:flex;align-items:center;gap:10px;padding:18px 0 16px;border-bottom:1px solid var(--b1);margin-bottom:22px}
-.cpill{padding:6px 14px;border-radius:20px;border:1px solid var(--b1);background:transparent;color:var(--t2);cursor:pointer}
-.cpill.active{background:var(--ac);color:#1a1005}
+.toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:18px 0 16px;border-bottom:1px solid var(--b1);margin-bottom:22px}
+.cpill{padding:6px 14px;border-radius:20px;border:1px solid var(--b1);background:transparent;color:var(--t2);font-size:12px;font-weight:500;cursor:pointer;transition:all .15s}
+.cpill.active{background:var(--ac);border-color:var(--ac);color:#1a1005}
+.shead{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.stitle{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);white-space:nowrap}
+.sline{flex:1;height:1px;background:var(--b1)}
 #itemsGrid.gv{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
-.icard{background:var(--s1);border:1px solid var(--b1);border-radius:var(--rl);padding:14px;cursor:pointer}
+.icard{background:var(--s1);border:1px solid var(--b1);border-radius:var(--rl);overflow:hidden;cursor:pointer;transition:all .22s;position:relative}
+.cth{width:100%;height:160px;background:var(--s2);display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;border-bottom:1px solid var(--b1)}
+.cbadge{position:absolute;top:10px;right:10px;background:var(--gr);color:#061a0e;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px}
+.cbody{padding:14px}
+.ctitle{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.carea{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--t2)}
 .overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
 .overlay.open{display:flex}
 .modal{background:var(--s1);border:1px solid var(--b2);border-radius:var(--rxl);width:100%;max-width:500px;padding:26px}
 .finp,.ftxa,.fsl{width:100%;background:var(--s2);border:1px solid var(--b1);border-radius:9px;padding:10px 13px;color:var(--t1);margin-bottom:14px;outline:none}
-.fsbmt{width:100%;padding:13px;background:var(--ac);border:none;border-radius:11px;font-weight:800;cursor:pointer}
-@media(max-width:960px){.hero{grid-template-columns:1fr;}.hero-vis{display:none}}
+.fsbmt{width:100%;padding:13px;background:var(--ac);border:none;border-radius:11px;color:#1a1005;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;cursor:pointer}
 </style>
 </head>
 <body>
@@ -64,22 +75,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t1);font-
     <a class="logo" href="#"><div class="logo-mark">BLR</div><span class="logo-text">Free<span>Stuff</span></span></a>
     <div class="nav-tabs">
       <button class="ntab active" onclick="goTab('browse',this)">Browse</button>
-      <button class="ntab" onclick="goTab('requests',this)">Requests</button>
       <button class="ntab" onclick="goTab('mine',this)">My Listings</button>
     </div>
     <div class="nav-spacer"></div>
     <div class="nav-search"><input type="text" placeholder="Search..." oninput="onSrch(this.value)"></div>
-    <button class="btn btn-accent" onclick="openM('postModal')">Give Away</button>
+    <button class="btn btn-accent btn-sm" onclick="openM('postModal')">Give Away</button>
   </div>
 </nav>
 
 <section class="hero">
   <div>
-    <h1 class="hero-h1">Give what you don't need.<br><span style="color:var(--ac)">Get what you do.</span></h1>
+    <h1 class="hero-h1">Give what you don't need.<br><span style="color:var(--ac); font-style:italic;">Get what you do.</span></h1>
     <div class="hstats">
-      <div class="hstat"><div id="hs1">0</div><div style="font-size:10px">GIVEN</div></div>
-      <div class="hstat"><div id="hs2">0</div><div style="font-size:10px">NEIGHBOURS</div></div>
-      <div class="hstat"><div id="hs3">0</div><div style="font-size:10px">AREAS</div></div>
+      <div class="hstat"><div class="hstat-v"><span id="hs1">0</span>+</div><div class="hstat-l">Items given away</div></div>
+      <div class="hstat"><div class="hstat-v"><span id="hs2">0</span></div><div class="hstat-l">Happy neighbours</div></div>
+      <div class="hstat"><div class="hstat-v"><span id="hs3">0</span></div><div class="hstat-l">Areas covered</div></div>
     </div>
   </div>
 </section>
@@ -90,28 +100,26 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t1);font-
       <button class="cpill active" onclick="setCat('All',this)">✨ All</button>
       <button class="cpill" onclick="setCat('Furniture',this)">🪑 Furniture</button>
       <button class="cpill" onclick="setCat('Electronics',this)">📱 Electronics</button>
+      <button class="cpill" onclick="setCat('Clothes',this)">👕 Clothes</button>
+      <button class="cpill" onclick="setCat('Books',this)">📚 Books</button>
     </div>
+    <div class="shead"><span class="stitle">Available now in Bangalore</span><div class="sline"></div><span id="icnt" style="font-size:12px; color:var(--t3)">0 items</span></div>
     <div id="itemsGrid" class="gv"></div>
   </div>
-
-  <div id="tab-requests" style="display:none">
-    <div id="rqgrid"></div>
-  </div>
-
   <div id="tab-mine" style="display:none">
-    <div id="mngrid"></div>
+    <div id="mngrid" style="display:flex; flex-direction:column; gap:10px;"></div>
   </div>
 </div>
 
 <div class="overlay" id="postModal" onclick="outerClick(event,'postModal')">
   <div class="modal">
-    <h3>Give Away 📦</h3>
-    <input class="finp" id="pt" placeholder="What is it?">
-    <textarea class="ftxa" id="pd" placeholder="Details..."></textarea>
-    <select class="fsl" id="pc"><option value="Furniture">Furniture</option><option value="Electronics">Electronics</option></select>
-    <input class="finp" id="pa" placeholder="Area (e.g. HSR)">
+    <h3 style="font-family:'Syne'; margin-bottom:15px;">Give something away 📦</h3>
+    <input class="finp" id="pt" placeholder="What are you giving?">
+    <textarea class="ftxa" id="pd" placeholder="Describe it (condition, dimensions...)"></textarea>
+    <select class="fsl" id="pc"><option value="Furniture">Furniture</option><option value="Electronics">Electronics</option><option value="Clothes">Clothes</option><option value="Books">Books</option><option value="Other">Other</option></select>
+    <input class="finp" id="pa" placeholder="Your Area (e.g. HSR Layout)">
     <input class="finp" id="pp" placeholder="WhatsApp Number">
-    <button class="fsbmt" onclick="submitPost()">Post Now</button>
+    <button class="fsbmt" onclick="submitPost()">Post to Community</button>
   </div>
 </div>
 
@@ -133,14 +141,13 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 let POSTS = [];
-const CI = {Furniture:'🪑', Electronics:'📱', Other:'🎁'};
+const CI = {Furniture:'🪑',Electronics:'📱',Clothes:'👕',Books:'📚',Other:'🎁'};
 let aCat = 'All', srchQ = '';
 
-// LIVE LISTENER
 db.ref('posts').on('value', (snapshot) => {
   POSTS = [];
   snapshot.forEach((child) => {
-    POSTS.push({ firebaseId: child.key, ...child.val() });
+    POSTS.push({ id: child.key, ...child.val() });
   });
   POSTS.sort((a,b) => b.postedAt - a.postedAt);
   render();
@@ -149,7 +156,49 @@ db.ref('posts').on('value', (snapshot) => {
 function render() {
   let d = [...POSTS];
   if(aCat !== 'All') d = d.filter(p => p.category === aCat);
+  if(srchQ) d = d.filter(p => p.title.toLowerCase().includes(srchQ.toLowerCase()));
+  
+  document.getElementById('icnt').textContent = d.length + ' items';
   const g = document.getElementById('itemsGrid');
+  if(!d.length) { g.innerHTML = '<p style="text-align:center; padding:50px; color:var(--t3)">Nothing here yet. Be the first to give!</p>'; return; }
+  
   g.innerHTML = d.map(p => `
     <div class="icard">
-      <div style="font-size:40px">${
+      <div class="cth">${CI[p.category]||'🎁'}<div class="cbadge">FREE</div></div>
+      <div class="cbody">
+        <div class="ctitle">${p.title}</div>
+        <div class="carea">📍 ${p.area}</div>
+        <button class="fsbmt" style="margin-top:10px; padding:8px; font-size:12px;" onclick="window.open('https://wa.me/91${p.phone}')">WhatsApp Owner</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function submitPost() {
+  const t = document.getElementById('pt').value.trim();
+  const a = document.getElementById('pa').value.trim();
+  const ph = document.getElementById('pp').value.trim();
+  const cat = document.getElementById('pc').value;
+  if(!t || !a || !ph) return toast('Fill all fields','⚠️');
+
+  const p = { title:t, area:a, phone:ph, category:cat, desc:document.getElementById('pd').value, postedAt:Date.now() };
+  db.ref('posts').push(p).then(() => {
+    closeM('postModal');
+    toast('Posted successfully! 🎉');
+  });
+}
+
+function goTab(t, btn) {
+  ['browse','mine'].forEach(x => document.getElementById('tab-'+x).style.display = x===t ? 'block' : 'none');
+  document.querySelectorAll('.ntab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function onSrch(v){srchQ=v; render();}
+function setCat(c,btn){aCat=c; document.querySelectorAll('.cpill').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); render();}
+function openM(id){document.getElementById(id).classList.add('open')}
+function closeM(id){document.getElementById(id).classList.remove('open')}
+function outerClick(e,id){if(e.target.id===id)closeM(id)}
+function toast(m,i='✓'){const t=document.getElementById('toast');document.getElementById('tmsg').textContent=m;document.getElementById('tico').textContent=i;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+</script>
+</body>
+</html>
