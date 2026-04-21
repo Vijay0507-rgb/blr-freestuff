@@ -651,26 +651,36 @@ footer a:hover{text-decoration:underline}
     </div>
   </div>
 </div>
-
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
 <script>
-const CI={Furniture:'🪑',Electronics:'📱',Clothes:'👕',Books:'📚',Kitchen:'🍳',Sports:'⚽','Baby & Kids':'🧸',Plants:'🌿',Other:'🎁'};
-let POSTS=[
-  {id:1,title:"Solid wood dining table (6-seater)",area:"Whitefield",desc:"Good condition, minor surface scratches. Solid teak, seats 6 comfortably. Ground-floor access — self-pickup only.",phone:"9876543210",category:"Furniture",claims:3,condition:"Good",pickup:"Self-pickup only",tags:["wooden","teak","dining"],postedAt:Date.now()-3600e3*2,mine:false,given:false},
-  {id:2,title:"iPhone 11 64GB – midnight blue",area:"Koramangala",desc:"Works perfectly. Face ID intact, no cracks, battery at 85%. Original charger included. Please check before you collect.",phone:"9123456789",category:"Electronics",claims:8,condition:"Good",pickup:"Self-pickup only",tags:["apple","iphone","smartphone"],postedAt:Date.now()-3600e3*1,mine:false,given:false},
-  {id:3,title:"Wardrobe of clothes – size M",area:"Indiranagar",desc:"Branded shirts, jeans, jackets, tees. All washed and ironed. Mix of casual and office wear. Good to excellent condition.",phone:"9988776655",category:"Clothes",claims:2,condition:"Good",pickup:"Either works",tags:["branded","shirts","jeans","formals"],postedAt:Date.now()-3600e3*5,mine:false,given:false},
-  {id:4,title:"Bookshelf + 50 books",area:"Jayanagar",desc:"5-shelf wooden bookshelf plus 50 books — engineering textbooks, MBA books, and popular fiction. Great for students.",phone:"9345678901",category:"Books",claims:1,condition:"Fair",pickup:"Self-pickup only",tags:["bookshelf","textbooks","novels"],postedAt:Date.now()-3600e3*8,mine:false,given:false},
-  {id:5,title:"Gaming chair with RGB base",area:"HSR Layout",desc:"Used only 6 months. Excellent shape. RGB base lights work, lumbar cushion included. Giving away because I'm upgrading.",phone:"9765432109",category:"Furniture",claims:5,condition:"Like New",pickup:"Self-pickup only",tags:["gaming","rgb","ergonomic"],postedAt:Date.now()-3600e3*3,mine:false,given:false},
-  {id:6,title:"PS4 Slim 500GB + 5 games",area:"Marathahalli",desc:"PlayStation 4 Slim. Comes with FIFA 22, GTA V, COD Cold War, Spider-Man, and Horizon Zero Dawn. All working perfectly.",phone:"9444332211",category:"Electronics",claims:12,condition:"Good",pickup:"Either works",tags:["ps4","gaming","console","fifa"],postedAt:Date.now()-3600e3*0.5,mine:false,given:false},
-  {id:7,title:"Preethi mixer grinder – 3 jars",area:"JP Nagar",desc:"All 3 jars and lids intact, blades sharp, works great. Giving away because we upgraded. Preethi Excel Plus.",phone:"9234567890",category:"Kitchen",claims:0,condition:"Good",pickup:"Self-pickup only",tags:["kitchen","mixer","preethi"],postedAt:Date.now()-3600e3*10,mine:false,given:false},
-  {id:8,title:"Cricket bat + pads (youth size 5)",area:"Bannerghatta",desc:"SG Kashmir Willow bat + one pair of pads. Youth size 5. Used for one season. Great condition.",phone:"9321098765",category:"Sports",claims:1,condition:"Good",pickup:"Can drop nearby",tags:["cricket","bat","pads","sg"],postedAt:Date.now()-3600e3*6,mine:false,given:false},
-  {id:9,title:"Baby cot with mattress",area:"Whitefield",desc:"Solid wooden baby cot with a clean mattress. Our little one is 2 now so we no longer need it. Very sturdy, no splinters.",phone:"9811223344",category:"Baby & Kids",claims:3,condition:"Good",pickup:"Self-pickup only",tags:["baby","cot","mattress","wooden"],postedAt:Date.now()-3600e3*4,mine:false,given:false},
-  {id:10,title:"6 indoor plants (Monstera + Pothos)",area:"Indiranagar",desc:"Moving apartments. 2 Monstera Deliciosa, 3 Pothos, 1 Peace Lily — all healthy and in pots. Very easy to care for.",phone:"9900112233",category:"Plants",claims:2,condition:"Like New",pickup:"Self-pickup only",tags:["plants","monstera","pothos","indoor"],postedAt:Date.now()-3600e3*7,mine:false,given:false},
-];
-let REQS=[
-  {id:1,title:"Looking for a washing machine",area:"Koramangala",desc:"Semi-automatic or fully automatic — either works as long as it runs. Flexible on brand.",category:"Electronics",phone:"9871234560",postedAt:Date.now()-3600e3*4,responses:2,urgent:false},
-  {id:2,title:"Need a study table + chair",area:"Whitefield",desc:"Just moved into a new flat, setting up a home office. Any decent study setup would help.",category:"Furniture",phone:"9876501234",postedAt:Date.now()-3600e3*12,responses:1,urgent:false},
-  {id:3,title:"Children's books for ages 5–10",area:"Jayanagar",desc:"Starting a community reading corner. Picture books, storybooks, activity books — all welcome. Can pick up ASAP.",category:"Books",phone:"9900112233",postedAt:Date.now()-3600e3*20,responses:4,urgent:true},
-];
+// 1. YOUR FIREBASE CONNECTION
+const firebaseConfig = {
+  apiKey: "AIzaSyAjyIedg2PavcyuKFRHu6byYnALSu4izBI",
+  authDomain: "blrfreestuff.firebaseapp.com",
+  databaseURL: "https://blrfreestuff-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "blrfreestuff",
+  storageBucket: "blrfreestuff.firebasestorage.app",
+  messagingSenderId: "597306242069",
+  appId: "1:597306242069:web:6b9bcde648d437ac85ca1c"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// 2. EMPTY POSTS ARRAY (Will be filled by Firebase)
+let POSTS = [];
+
+// 3. LISTEN FOR LIVE UPDATES
+db.ref('posts').on('value', (snapshot) => {
+  POSTS = [];
+  snapshot.forEach((childSnapshot) => {
+    POSTS.push(childSnapshot.val());
+  });
+  // Sort by newest first
+  POSTS.sort((a,b) => b.postedAt - a.postedAt);
+  render(); // Update the screen instantly!
+});
 let aCat='All',aView='g',aCond='Good',srchQ='';
 const FAV=new Set(),MINE=[];
 const WA_SVG=`<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>`;
