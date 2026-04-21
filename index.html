@@ -9,26 +9,21 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#07080a;--s1:#0d0f11;--s2:#141618;--s3:#1c1f22;--s4:#242729;
-  --b1:rgba(255,255,255,0.06);--b2:rgba(255,255,255,0.11);--b3:rgba(255,255,255,0.18);
-  --t1:#f2efe9;--t2:#9a9690;--t3:#5a5752;
-  --ac:#c8a96e;--ac2:rgba(200,169,110,0.15);--ac3:rgba(200,169,110,0.08);
-  --gr:#4db87a;--gr2:rgba(77,184,122,0.12);
-  --rd:#e05555;--rd2:rgba(224,85,85,0.12);
-  --bl:#5b9cf6;--bl2:rgba(91,156,246,0.12);
-  --am:#f0a040;--am2:rgba(240,160,64,0.12);
-  --r:10px;--rl:16px;--rxl:22px;
+  --bg:#07080a;--s1:#0d0f11;--s2:#141618;--s3:#1c1f22;--s4:#242729;
+  --b1:rgba(255,255,255,0.06);--b2:rgba(255,255,255,0.11);--b3:rgba(255,255,255,0.18);
+  --t1:#f2efe9;--t2:#9a9690;--t3:#5a5752;
+  --ac:#c8a96e;--ac2:rgba(200,169,110,0.15);--ac3:rgba(200,169,110,0.08);
+  --gr:#4db87a;--gr2:rgba(77,184,122,0.12);
+  --rd:#e05555;--rd2:rgba(224,85,85,0.12);
+  --bl:#5b9cf6;--bl2:rgba(91,156,246,0.12);
+  --am:#f0a040;--am2:rgba(240,160,64,0.12);
+  --r:10px;--rl:16px;--rxl:22px;
 }
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t1);font-size:14px;line-height:1.6;overflow-x:hidden;min-height:100vh}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--s4);border-radius:3px}
-.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
-
-/* TOAST */
 #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--s3);border:1px solid var(--b2);border-radius:var(--r);padding:11px 20px;font-size:13px;font-weight:500;color:var(--t1);z-index:9999;transition:transform .3s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;pointer-events:none;display:flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(0,0,0,.5)}
 #toast.show{transform:translateX(-50%) translateY(0)}
-
-/* NAV */
 #nav{position:sticky;top:0;z-index:300;background:rgba(7,8,10,.92);border-bottom:1px solid var(--b1);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
 .nav-inner{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:0 24px;height:58px}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
@@ -39,842 +34,171 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t1);font-
 .ntab{padding:6px 14px;border-radius:8px;border:none;background:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--t2);cursor:pointer;transition:all .15s}
 .ntab:hover{color:var(--t1);background:var(--s2)}
 .ntab.active{color:var(--t1);background:var(--s2)}
-.ntab .nb{display:inline-flex;align-items:center;justify-content:center;min-width:17px;height:17px;background:var(--rd);color:#fff;font-size:10px;border-radius:9px;padding:0 4px;margin-left:4px;font-weight:700;vertical-align:middle}
 .nav-spacer{flex:1}
 .nav-search{display:flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--b1);border-radius:9px;padding:0 14px;height:34px;width:200px;transition:all .25s}
-.nav-search:focus-within{border-color:var(--b2);width:240px}
-.nav-search svg{color:var(--t3);flex-shrink:0}
 .nav-search input{background:none;border:none;outline:none;color:var(--t1);font-family:'DM Sans',sans-serif;font-size:13px;width:100%}
-.nav-search input::placeholder{color:var(--t3)}
-.icon-btn{width:34px;height:34px;border-radius:9px;border:1px solid var(--b1);background:var(--s2);color:var(--t2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;position:relative;flex-shrink:0}
-.icon-btn:hover{color:var(--t1);border-color:var(--b2)}
-.icon-btn .dot{position:absolute;top:7px;right:7px;width:6px;height:6px;background:var(--rd);border-radius:50%;border:2px solid var(--bg)}
 .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;border:1px solid transparent;white-space:nowrap}
-.btn-ghost{background:var(--s2);border-color:var(--b1);color:var(--t2)}
-.btn-ghost:hover{color:var(--t1);border-color:var(--b2)}
 .btn-accent{background:var(--ac);border-color:var(--ac);color:#1a1005;font-weight:600}
-.btn-accent:hover{background:#d9bb82;transform:translateY(-1px)}
-.btn-sm{padding:6px 12px;font-size:12px;border-radius:8px}
-
-/* PANELS */
-.panel{position:fixed;top:66px;right:20px;z-index:400;background:var(--s1);border:1px solid var(--b2);border-radius:var(--rl);overflow:hidden;display:none;box-shadow:0 24px 60px rgba(0,0,0,.6);animation:panelIn .2s ease}
-.panel.open{display:block}
-@keyframes panelIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-.panel-head{padding:14px 16px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--b1)}
-.panel-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.02em}
-.panel-action{font-size:12px;color:var(--ac);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif}
-#notifPanel{width:300px}
-.notif-item{padding:12px 16px;display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid var(--b1);cursor:pointer;transition:background .15s}
-.notif-item:hover{background:var(--s2)}
-.notif-item.unread{background:rgba(200,169,110,.04)}
-.ndot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px}
-.ndot.new{background:var(--ac)}
-.ndot.old{background:var(--t3)}
-.ntext{font-size:12px;color:var(--t2);line-height:1.5}
-.ntext strong{color:var(--t1)}
-.ntime{font-size:11px;color:var(--t3);margin-top:2px}
-#profilePanel{width:215px}
-.profile-info{padding:14px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--b1)}
-.avatar{width:34px;height:34px;border-radius:50%;background:var(--ac);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#1a1005;flex-shrink:0}
-.pname{font-size:14px;font-weight:600}
-.ploc{font-size:11px;color:var(--t2)}
-.pmitem{padding:9px 16px;display:flex;align-items:center;gap:9px;font-size:13px;color:var(--t2);cursor:pointer;transition:all .15s;border:none;background:none;width:100%;text-align:left;font-family:'DM Sans',sans-serif}
-.pmitem:hover{background:var(--s2);color:var(--t1)}
-
-/* HERO */
 .hero{max-width:1240px;margin:0 auto;padding:60px 24px 52px;display:grid;grid-template-columns:1fr 360px;gap:56px;align-items:center}
-.hero-ey{display:inline-flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--b2);border-radius:20px;padding:5px 14px;margin-bottom:22px}
-.ldot{width:7px;height:7px;border-radius:50%;background:var(--gr);box-shadow:0 0 0 0 rgba(77,184,122,.4);animation:lp 2.5s infinite;flex-shrink:0}
-@keyframes lp{0%{box-shadow:0 0 0 0 rgba(77,184,122,.4)}70%{box-shadow:0 0 0 8px rgba(77,184,122,0)}100%{box-shadow:0 0 0 0 rgba(77,184,122,0)}}
-.eytext{font-size:12px;color:var(--t2);font-weight:500}
-.eytext strong{color:var(--gr)}
 .hero-h1{font-family:'Syne',sans-serif;font-size:52px;line-height:1.08;font-weight:800;letter-spacing:-.03em;margin-bottom:16px}
-.hero-h1 .hl{color:var(--ac);font-style:italic}
-.hero-p{font-size:15px;color:var(--t2);line-height:1.75;max-width:440px;margin-bottom:28px}
-.hero-p strong{color:var(--t1);font-weight:500}
-.hero-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px}
 .hstats{display:flex;border:1px solid var(--b1);border-radius:var(--r);overflow:hidden}
 .hstat{padding:14px 22px;flex:1;border-right:1px solid var(--b1)}
 .hstat:last-child{border-right:none}
 .hstat-v{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--t1);line-height:1;margin-bottom:3px}
 .hstat-l{font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em}
-.hero-vis{position:relative;height:320px}
-.fcard{position:absolute;background:var(--s1);border:1px solid var(--b2);border-radius:var(--rl);padding:14px;cursor:pointer;transition:all .3s}
-.fcard:hover{transform:scale(1.03)!important;border-color:var(--b3)}
-.fc1{width:220px;top:0;left:0;z-index:3;animation:fa 5s ease-in-out infinite}
-.fc2{width:200px;top:65px;left:125px;z-index:2;opacity:.7;transform:rotate(5deg);animation:fb 6s ease-in-out infinite}
-.fc3{width:180px;top:170px;left:55px;z-index:1;opacity:.4;transform:rotate(-3deg);animation:fc 7s ease-in-out infinite}
-@keyframes fa{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes fb{0%,100%{transform:rotate(5deg) translateY(0)}50%{transform:rotate(5deg) translateY(-8px)}}
-@keyframes fc{0%,100%{transform:rotate(-3deg) translateY(0)}50%{transform:rotate(-3deg) translateY(-6px)}}
-.fce{font-size:36px;margin-bottom:8px;display:block}
-.fct{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:4px}
-.fcm{font-size:11px;color:var(--t2)}
-.fcfree{display:inline-block;background:var(--gr);color:#061a0e;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-top:6px;letter-spacing:.04em}
-
-/* MAIN */
 .main{max-width:1240px;margin:0 auto;padding:0 24px 80px}
 .toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:18px 0 16px;border-bottom:1px solid var(--b1);margin-bottom:22px}
-.cpills{display:flex;gap:6px;flex-wrap:wrap;flex:1;min-width:0}
-.cpill{padding:6px 14px;border-radius:20px;border:1px solid var(--b1);background:transparent;color:var(--t2);font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;white-space:nowrap;display:flex;align-items:center;gap:4px}
-.cpill:hover{border-color:var(--b2);color:var(--t1)}
+.cpill{padding:6px 14px;border-radius:20px;border:1px solid var(--b1);background:transparent;color:var(--t2);font-size:12px;font-weight:500;cursor:pointer;transition:all .15s}
 .cpill.active{background:var(--ac);border-color:var(--ac);color:#1a1005}
-.tbright{display:flex;align-items:center;gap:8px;flex-shrink:0}
-.fsel{background:var(--s2);border:1px solid var(--b1);border-radius:9px;padding:7px 10px;color:var(--t2);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;cursor:pointer}
-.fsel:focus{border-color:var(--b2);color:var(--t1)}
-.vtog{display:flex;gap:2px;background:var(--s2);padding:3px;border-radius:9px;border:1px solid var(--b1)}
-.vb{width:30px;height:28px;border:none;background:none;border-radius:7px;cursor:pointer;color:var(--t3);display:flex;align-items:center;justify-content:center;transition:all .15s}
-.vb.active,.vb:hover{background:var(--s3);color:var(--t1)}
 .shead{display:flex;align-items:center;gap:12px;margin-bottom:18px}
 .stitle{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);white-space:nowrap}
 .sline{flex:1;height:1px;background:var(--b1)}
-.scnt{font-size:12px;color:var(--t3);background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:2px 10px;white-space:nowrap}
-
-/* GRID */
 #itemsGrid.gv{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
-#itemsGrid.lv{display:flex;flex-direction:column;gap:10px}
-
-/* CARD */
-.icard{background:var(--s1);border:1px solid var(--b1);border-radius:var(--rl);overflow:hidden;cursor:pointer;transition:all .22s;position:relative;animation:fu .35s ease both}
-.icard:hover{border-color:var(--b2);transform:translateY(-2px);box-shadow:0 12px 36px rgba(0,0,0,.45)}
-@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.icard.lv{display:flex;flex-direction:row;border-radius:var(--r)}
-.icard.lv .cth{width:90px;height:auto;flex-shrink:0;border-bottom:none;border-right:1px solid var(--b1);border-radius:0}
-.icard.lv .cbody{flex:1;display:flex;flex-direction:column;justify-content:space-between}
-.cth{width:100%;height:160px;background:var(--s2);display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;border-bottom:1px solid var(--b1);flex-shrink:0}
-.cbadge{position:absolute;top:10px;right:10px;background:var(--gr);color:#061a0e;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.04em}
-.ccond{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,.65);color:var(--t1);font-size:10px;padding:3px 8px;border-radius:6px;font-weight:500;backdrop-filter:blur(4px)}
-.cfav{position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;background:rgba(7,8,10,.7);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;transition:all .2s;z-index:2}
-.cfav:hover{background:var(--rd2);border-color:var(--rd)}
-.cfav.on{background:var(--rd2);border-color:var(--rd)}
+.icard{background:var(--s1);border:1px solid var(--b1);border-radius:var(--rl);overflow:hidden;cursor:pointer;transition:all .22s;position:relative}
+.cth{width:100%;height:160px;background:var(--s2);display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;border-bottom:1px solid var(--b1)}
+.cbadge{position:absolute;top:10px;right:10px;background:var(--gr);color:#061a0e;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px}
 .cbody{padding:14px}
-.ch{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px}
-.ccat{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ac);flex-shrink:0}
-.ctime{font-size:11px;color:var(--t3);white-space:nowrap}
-.ctitle{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:4px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.cdesc{font-size:12px;color:var(--t2);line-height:1.55;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.ctags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px}
-.ctag{font-size:10px;padding:2px 7px;border-radius:5px;border:1px solid var(--b1);color:var(--t3)}
-.cint{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.citr{flex:1;height:2px;background:var(--s3);border-radius:2px;overflow:hidden}
-.cifl{height:100%;background:var(--gr);border-radius:2px;transition:width .6s ease}
-.cicnt{font-size:11px;color:var(--t3);white-space:nowrap}
-.cfoot{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--b1);gap:8px}
+.ctitle{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:4px}
 .carea{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--t2)}
-.cbtns{display:flex;gap:5px}
-.cbtn{padding:5px 11px;border-radius:7px;border:1px solid var(--b1);background:transparent;color:var(--t1);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s}
-.cbtn:hover{background:var(--s2);border-color:var(--b2)}
-.cbtn-c{background:var(--ac2);border-color:rgba(200,169,110,.3);color:var(--ac)}
-.cbtn-c:hover{background:rgba(200,169,110,.25)}
-.cbtn-w{background:var(--gr2);border-color:rgba(77,184,122,.25);color:var(--gr);padding:5px 9px}
-.cbtn-w:hover{background:rgba(77,184,122,.2)}
-
-/* EMPTY */
-.empty{text-align:center;padding:80px 20px;grid-column:1/-1}
-.empty-i{font-size:48px;margin-bottom:14px;opacity:.3}
-.empty-t{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:6px}
-.empty-s{font-size:13px;color:var(--t2)}
-
-/* MODALS */
 .overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
 .overlay.open{display:flex}
-.modal{background:var(--s1);border:1px solid var(--b2);border-radius:var(--rxl);width:100%;max-height:90vh;overflow-y:auto;animation:mIn .22s ease;position:relative}
-@keyframes mIn{from{opacity:0;transform:scale(.96) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.mhead{display:flex;align-items:flex-start;justify-content:space-between;padding:26px 26px 0}
-.mtitle{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-.02em}
-.msub{font-size:12px;color:var(--t2);margin-top:3px}
-.mcls{width:30px;height:30px;border-radius:8px;border:1px solid var(--b1);background:var(--s2);color:var(--t2);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;font-family:sans-serif}
-.mcls:hover{color:var(--t1);border-color:var(--b2)}
-.mbody{padding:22px 26px 26px}
-.flbl{display:block;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--t2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
-.finp,.ftxa,.fsl{width:100%;background:var(--s2);border:1px solid var(--b1);border-radius:9px;padding:10px 13px;color:var(--t1);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;transition:border-color .2s;margin-bottom:14px}
-.finp::placeholder,.ftxa::placeholder{color:var(--t3)}
-.finp:focus,.ftxa:focus,.fsl:focus{border-color:rgba(200,169,110,.5)}
-.ftxa{resize:vertical;min-height:80px;line-height:1.6}
-.fsl{cursor:pointer}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.fhint{font-size:11px;color:var(--t3);margin-top:-10px;margin-bottom:14px}
-.cbs{display:flex;gap:6px;margin-bottom:14px}
-.cb{flex:1;padding:7px 10px;border-radius:8px;border:1px solid var(--b1);background:transparent;color:var(--t2);font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:center;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
-.cb:hover{border-color:var(--b2);color:var(--t1)}
-.cb.active{border-color:var(--ac);background:var(--ac2);color:var(--ac)}
-.charcnt{font-size:11px;color:var(--t3);text-align:right;margin-top:-10px;margin-bottom:10px}
-.fsbmt{width:100%;padding:13px;background:var(--ac);border:none;border-radius:11px;color:#1a1005;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px;letter-spacing:.02em}
-.fsbmt:hover{background:#d9bb82;transform:translateY(-1px)}
-
-/* DETAIL MODAL */
-.dmod{max-width:600px}
-.dthumb{width:100%;height:200px;background:var(--s2);display:flex;align-items:center;justify-content:center;font-size:68px;border-bottom:1px solid var(--b1);flex-shrink:0}
-.dbody{padding:22px 26px 26px}
-.dtags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-.dtag{font-size:12px;padding:4px 10px;border-radius:7px;display:flex;align-items:center;gap:4px;font-weight:500}
-.dtag.gr{background:var(--gr2);color:var(--gr)}
-.dtag.am{background:var(--am2);color:var(--am)}
-.dtag.bl{background:var(--bl2);color:var(--bl)}
-.dtag.rd{background:var(--rd2);color:var(--rd)}
-.dtitle{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px;line-height:1.2}
-.ddesc{font-size:14px;color:var(--t2);line-height:1.75;margin-bottom:18px}
-.urg{background:var(--am2);border:1px solid rgba(240,160,64,.2);border-radius:9px;padding:10px 14px;display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:13px;color:var(--am)}
-.dinfo{background:var(--s2);border-radius:11px;border:1px solid var(--b1);overflow:hidden;margin-bottom:18px}
-.dir{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;font-size:13px;border-bottom:1px solid var(--b1)}
-.dir:last-child{border-bottom:none}
-.dik{color:var(--t2)}
-.div{color:var(--t1);font-weight:500}
-.dacts{display:flex;gap:10px}
-.dwa{flex:1;padding:12px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.22);color:#25d366;border-radius:11px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s}
-.dwa:hover{background:rgba(37,211,102,.18)}
-.dshr{padding:12px 16px;background:var(--s2);border:1px solid var(--b1);color:var(--t2);border-radius:11px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
-.dshr:hover{background:var(--s3);color:var(--t1)}
-.drep{padding:12px 14px;background:transparent;border:1px solid var(--b1);color:var(--t3);border-radius:11px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
-.drep:hover{color:var(--rd);border-color:var(--rd2)}
-
-/* REQUESTS */
-.rqcard{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);display:flex;overflow:hidden;cursor:pointer;transition:all .2s;animation:fu .35s ease both}
-.rqcard:hover{border-color:var(--b2);transform:translateY(-1px)}
-.rqico{width:72px;background:var(--s2);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;border-right:1px solid var(--b1)}
-.rqbody{padding:14px 16px;flex:1}
-.rqhead{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:5px}
-.rqtitle{font-family:'Syne',sans-serif;font-size:14px;font-weight:700}
-.rqtime{font-size:11px;color:var(--t3);white-space:nowrap}
-.rqdesc{font-size:12px;color:var(--t2);margin-bottom:10px;line-height:1.5}
-.rqfoot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.rqmeta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.rqpill{font-size:11px;padding:2px 8px;border-radius:6px;font-weight:500}
-.rqpill.bl{background:var(--bl2);color:var(--bl)}
-.rqpill.rd{background:var(--rd2);color:var(--rd)}
-
-/* MY ITEMS */
-.mycard{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);display:flex;overflow:hidden;animation:fu .35s ease both;transition:all .2s}
-.mycard:hover{border-color:var(--b2)}
-.myico{width:72px;background:var(--s2);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;border-right:1px solid var(--b1)}
-.mybody{padding:14px 16px;flex:1}
-.myhead{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:4px}
-.mytitle{font-family:'Syne',sans-serif;font-size:14px;font-weight:700}
-.mystatus{font-size:10px;padding:2px 8px;border-radius:6px;font-weight:700;letter-spacing:.04em}
-.mystatus.active{background:var(--gr2);color:var(--gr)}
-.mystatus.given{background:var(--s3);color:var(--t3)}
-.mymeta{font-size:12px;color:var(--t2);margin-bottom:10px}
-.myacts{display:flex;gap:6px}
-.myact{padding:5px 11px;border-radius:7px;border:1px solid var(--b1);background:transparent;color:var(--t2);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s}
-.myact:hover{background:var(--s2);color:var(--t1)}
-.myact.danger{border-color:var(--rd2);color:var(--rd)}
-.myact.danger:hover{background:var(--rd2)}
-
-/* HOW IT WORKS */
-.how{max-width:1240px;margin:0 auto;padding:40px 24px;border-top:1px solid var(--b1)}
-.how-t{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:24px;text-align:center}
-.how-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.how-c{background:var(--s1);border:1px solid var(--b1);border-radius:var(--rl);padding:20px;text-align:center;transition:border-color .2s}
-.how-c:hover{border-color:var(--b2)}
-.how-n{width:34px;height:34px;border-radius:50%;background:var(--ac);color:#1a1005;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
-.how-i{font-size:26px;margin-bottom:8px}
-.how-h{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:4px}
-.how-p{font-size:12px;color:var(--t2);line-height:1.55}
-
-/* SAFETY */
-.safety{max-width:1240px;margin:0 auto;padding:0 24px 40px}
-.safety-b{background:var(--s1);border:1px solid var(--b1);border-radius:var(--rl);padding:20px 24px;display:flex;align-items:flex-start;gap:16px}
-.safety-i{font-size:26px;flex-shrink:0;margin-top:2px}
-.safety-t{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:8px}
-.stips{display:flex;gap:6px;flex-wrap:wrap}
-.stip{font-size:12px;color:var(--t2);background:var(--s2);border:1px solid var(--b1);border-radius:6px;padding:4px 10px}
-
-/* FAB */
-#fab{position:fixed;bottom:24px;right:24px;z-index:100;width:50px;height:50px;border-radius:50%;background:var(--ac);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;color:#1a1005;font-weight:800;box-shadow:0 6px 24px rgba(200,169,110,.35);transition:all .2s;font-family:sans-serif}
-#fab:hover{transform:scale(1.1);box-shadow:0 10px 32px rgba(200,169,110,.45)}
-
-/* FOOTER */
-.footer-w{border-top:1px solid var(--b1)}
-footer{max-width:1240px;margin:0 auto;padding:28px 24px;text-align:center;color:var(--t3);font-size:12px}
-footer .fl{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--t2);margin-bottom:6px;letter-spacing:-.02em}
-footer a{color:var(--ac);text-decoration:none}
-footer a:hover{text-decoration:underline}
-
-/* RESPONSIVE */
-@media(max-width:960px){
-  .hero{grid-template-columns:1fr;padding:40px 20px 36px}
-  .hero-vis{display:none}
-  .hero-h1{font-size:38px}
-  .how-g{grid-template-columns:1fr 1fr}
-  #itemsGrid.gv{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
-  .nav-tabs{display:none}
-}
-@media(max-width:600px){
-  .hero-h1{font-size:30px}
-  .hstats{display:grid;grid-template-columns:1fr 1fr}
-  .main{padding:0 16px 80px}
-  #itemsGrid.gv{grid-template-columns:1fr 1fr}
-  .frow{grid-template-columns:1fr}
-  .dacts{flex-direction:column}
-  .nav-search{display:none}
-  .how-g{grid-template-columns:1fr 1fr}
-}
+.modal{background:var(--s1);border:1px solid var(--b2);border-radius:var(--rxl);width:100%;max-width:500px;padding:26px}
+.finp,.ftxa,.fsl{width:100%;background:var(--s2);border:1px solid var(--b1);border-radius:9px;padding:10px 13px;color:var(--t1);margin-bottom:14px;outline:none}
+.fsbmt{width:100%;padding:13px;background:var(--ac);border:none;border-radius:11px;color:#1a1005;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;cursor:pointer}
 </style>
 </head>
 <body>
 <div id="toast"><span id="tico"></span><span id="tmsg"></span></div>
 
-<!-- NAV -->
 <nav id="nav">
-  <div class="nav-inner">
-    <a class="logo" href="#"><div class="logo-mark">BLR</div><span class="logo-text">Free<span>Stuff</span></span></a>
-    <div class="nav-tabs">
-      <button class="ntab active" data-tab="browse" onclick="goTab('browse',this)">Browse</button>
-      <button class="ntab" data-tab="requests" onclick="goTab('requests',this)">Requests <span class="nb" id="rqBadge">3</span></button>
-      <button class="ntab" data-tab="saved" onclick="goTab('saved',this)">Saved</button>
-      <button class="ntab" data-tab="mine" onclick="goTab('mine',this)">My Listings</button>
-    </div>
-    <div class="nav-spacer"></div>
-    <div class="nav-search">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="ns" placeholder="Search by item, area, tag…" oninput="onSrch(this.value)">
-    </div>
-    <button class="icon-btn" id="nBtn" onclick="togglePanel('notif')" title="Notifications">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-      <span class="dot" id="ndot"></span>
-    </button>
-    <button class="icon-btn" onclick="togglePanel('profile')" title="Your profile">
-      <div class="avatar" style="width:24px;height:24px;font-size:10px;">R</div>
-    </button>
-    <button class="btn btn-accent btn-sm" onclick="openM('postModal')">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg>
-      Give Away
-    </button>
-  </div>
+  <div class="nav-inner">
+    <a class="logo" href="#"><div class="logo-mark">BLR</div><span class="logo-text">Free<span>Stuff</span></span></a>
+    <div class="nav-tabs">
+      <button class="ntab active" onclick="goTab('browse',this)">Browse</button>
+      <button class="ntab" onclick="goTab('mine',this)">My Listings</button>
+    </div>
+    <div class="nav-spacer"></div>
+    <div class="nav-search"><input type="text" placeholder="Search..." oninput="onSrch(this.value)"></div>
+    <button class="btn btn-accent btn-sm" onclick="openM('postModal')">Give Away</button>
+  </div>
 </nav>
 
-<!-- NOTIF PANEL -->
-<div id="notifPanel" class="panel">
-  <div class="panel-head">
-    <span class="panel-title">Notifications</span>
-    <button class="panel-action" onclick="clearNotifs()">Mark all read</button>
-  </div>
-  <div>
-    <div class="notif-item unread"><div class="ndot new"></div><div><div class="ntext"><strong>Arjun K.</strong> is interested in your Gaming Chair</div><div class="ntime">5 minutes ago</div></div></div>
-    <div class="notif-item unread"><div class="ndot new"></div><div><div class="ntext"><strong>Priya M.</strong> messaged about Bookshelf + 50 Books</div><div class="ntime">28 minutes ago</div></div></div>
-    <div class="notif-item"><div class="ndot old"></div><div><div class="ntext">New nearby: <strong>MacBook Air M2</strong> in Koramangala</div><div class="ntime">1 hour ago</div></div></div>
-    <div class="notif-item"><div class="ndot old"></div><div><div class="ntext">Your washing machine request got <strong>2 responses</strong></div><div class="ntime">3 hours ago</div></div></div>
-    <div class="notif-item"><div class="ndot old"></div><div><div class="ntext"><strong>5 new items</strong> added in your area this week</div><div class="ntime">Yesterday</div></div></div>
-  </div>
-</div>
-
-<!-- PROFILE PANEL -->
-<div id="profilePanel" class="panel">
-  <div class="profile-info">
-    <div class="avatar">R</div>
-    <div><div class="pname">Rahul S.</div><div class="ploc">📍 Koramangala</div></div>
-  </div>
-  <button class="pmitem" onclick="goTab('mine');closeAll()"><span style="font-size:15px">📦</span> My Listings</button>
-  <button class="pmitem" onclick="goTab('saved');closeAll()"><span style="font-size:15px">❤️</span> Saved Items</button>
-  <button class="pmitem"><span style="font-size:15px">🔔</span> Alert Settings</button>
-  <button class="pmitem"><span style="font-size:15px">📍</span> Change Neighbourhood</button>
-  <button class="pmitem"><span style="font-size:15px">🛡️</span> Safety Guide</button>
-  <button class="pmitem" style="border-top:1px solid var(--b1);margin-top:2px"><span style="font-size:15px">👋</span> Sign Out</button>
-</div>
-
-<!-- HERO -->
 <section class="hero">
-  <div>
-    <div class="hero-ey"><div class="ldot"></div><span class="eytext"><strong id="liveN">156</strong> items available right now across Bangalore</span></div>
-    <h1 class="hero-h1">Give what you don't need.<br><span class="hl">Get what you do.</span></h1>
-    <p class="hero-p">Furniture, electronics, clothes, books, kitchen items — <strong>free from your neighbours</strong> across Bangalore. No fees. No awkward bargaining. Just community.</p>
-    <div class="hero-ctas">
-      <button class="btn btn-accent" onclick="openM('postModal')">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
-        Give something away
-      </button>
-      <button class="btn btn-ghost" onclick="openM('requestModal')">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        Looking for something?
-      </button>
-    </div>
-    <div class="hstats">
-      <div class="hstat"><div class="hstat-v"><span id="hs1">0</span>+</div><div class="hstat-l">Items given away</div></div>
-      <div class="hstat"><div class="hstat-v"><span id="hs2">0</span></div><div class="hstat-l">Happy neighbours</div></div>
-      <div class="hstat"><div class="hstat-v"><span id="hs3">0</span></div><div class="hstat-l">Areas covered</div></div>
-      <div class="hstat"><div class="hstat-v">₹<span id="hs4">0</span>L+</div><div class="hstat-l">Value exchanged</div></div>
-    </div>
-  </div>
-  <div class="hero-vis">
-    <div class="fcard fc1" onclick="openDetail(6)">
-      <span class="fce">🎮</span>
-      <div class="fct">PS4 Slim + 5 Games</div>
-      <div class="fcm">Marathahalli · Electronics</div>
-      <span class="fcfree">FREE TO TAKE</span>
-    </div>
-    <div class="fcard fc2">
-      <span class="fce" style="font-size:28px">📱</span>
-      <div class="fct">iPhone 11 – Blue</div>
-      <div class="fcm">Koramangala</div>
-      <span class="fcfree">FREE</span>
-    </div>
-    <div class="fcard fc3">
-      <span class="fce" style="font-size:24px">🪑</span>
-      <div class="fct">Gaming Chair</div>
-      <div class="fcm">HSR Layout</div>
-    </div>
-  </div>
+  <div>
+    <h1 class="hero-h1">Give what you don't need.<br><span style="color:var(--ac); font-style:italic;">Get what you do.</span></h1>
+    <div class="hstats">
+      <div class="hstat"><div class="hstat-v"><span id="hs1">0</span>+</div><div class="hstat-l">Items given away</div></div>
+      <div class="hstat"><div class="hstat-v"><span id="hs2">0</span></div><div class="hstat-l">Happy neighbours</div></div>
+      <div class="hstat"><div class="hstat-v"><span id="hs3">0</span></div><div class="hstat-l">Areas covered</div></div>
+    </div>
+  </div>
 </section>
 
-<!-- MAIN -->
 <div class="main">
-
-  <!-- BROWSE -->
-  <div id="tab-browse">
-    <div class="toolbar">
-      <div class="cpills" id="cpills">
-        <button class="cpill active" onclick="setCat('All',this)">✨ All</button>
-        <button class="cpill" onclick="setCat('Furniture',this)">🪑 Furniture</button>
-        <button class="cpill" onclick="setCat('Electronics',this)">📱 Electronics</button>
-        <button class="cpill" onclick="setCat('Clothes',this)">👕 Clothes</button>
-        <button class="cpill" onclick="setCat('Books',this)">📚 Books</button>
-        <button class="cpill" onclick="setCat('Kitchen',this)">🍳 Kitchen</button>
-        <button class="cpill" onclick="setCat('Sports',this)">⚽ Sports</button>
-        <button class="cpill" onclick="setCat('Baby & Kids',this)">🧸 Baby &amp; Kids</button>
-        <button class="cpill" onclick="setCat('Plants',this)">🌿 Plants</button>
-      </div>
-      <div class="tbright">
-        <select class="fsel" id="aF" onchange="render()">
-          <option value="">All areas</option>
-          <option>Whitefield</option><option>Koramangala</option><option>Indiranagar</option>
-          <option>Jayanagar</option><option>HSR Layout</option><option>Marathahalli</option>
-          <option>JP Nagar</option><option>Bannerghatta</option><option>Electronic City</option><option>Hebbal</option>
-        </select>
-        <select class="fsel" id="coF" onchange="render()">
-          <option value="">Any condition</option>
-          <option>Like New</option><option>Good</option><option>Fair</option><option>Parts Only</option>
-        </select>
-        <select class="fsel" id="soF" onchange="render()">
-          <option value="newest">Newest first</option>
-          <option value="popular">Most interested</option>
-          <option value="area">By area</option>
-        </select>
-        <div class="vtog">
-          <button class="vb active" id="gvb" onclick="setView('g')" title="Grid view">
-            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="7" height="7" rx="1"/><rect x="9" y="0" width="7" height="7" rx="1"/><rect x="0" y="9" width="7" height="7" rx="1"/><rect x="9" y="9" width="7" height="7" rx="1"/></svg>
-          </button>
-          <button class="vb" id="lvb" onclick="setView('l')" title="List view">
-            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="1" width="16" height="2" rx="1"/><rect x="0" y="7" width="16" height="2" rx="1"/><rect x="0" y="13" width="16" height="2" rx="1"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="shead"><span class="stitle">Available now</span><div class="sline"></div><span class="scnt" id="icnt">0 items</span></div>
-    <div id="itemsGrid" class="gv"></div>
-  </div>
-
-  <!-- REQUESTS -->
-  <div id="tab-requests" style="display:none">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:22px">
-      <div>
-        <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px">Community Wishlist</div>
-        <div style="font-size:13px;color:var(--t2)">Things neighbours are looking for — if you have it, reach out!</div>
-      </div>
-      <button class="btn btn-accent" onclick="openM('requestModal')">+ Post a request</button>
-    </div>
-    <div id="rqgrid" style="display:flex;flex-direction:column;gap:10px"></div>
-  </div>
-
-  <!-- SAVED -->
-  <div id="tab-saved" style="display:none">
-    <div style="margin-bottom:20px">
-      <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px">Saved Items</div>
-      <div style="font-size:13px;color:var(--t2)">Items you've bookmarked — free items go fast, don't wait too long!</div>
-    </div>
-    <div id="svgrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px"></div>
-  </div>
-
-  <!-- MY LISTINGS -->
-  <div id="tab-mine" style="display:none">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:22px">
-      <div>
-        <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px">Your Listings</div>
-        <div style="font-size:13px;color:var(--t2)">Everything you've offered or given away</div>
-      </div>
-      <button class="btn btn-accent" onclick="openM('postModal')">+ Give something away</button>
-    </div>
-    <div id="mngrid" style="display:flex;flex-direction:column;gap:10px"></div>
-  </div>
-
+  <div id="tab-browse">
+    <div class="toolbar">
+      <button class="cpill active" onclick="setCat('All',this)">✨ All</button>
+      <button class="cpill" onclick="setCat('Furniture',this)">🪑 Furniture</button>
+      <button class="cpill" onclick="setCat('Electronics',this)">📱 Electronics</button>
+      <button class="cpill" onclick="setCat('Clothes',this)">👕 Clothes</button>
+      <button class="cpill" onclick="setCat('Books',this)">📚 Books</button>
+    </div>
+    <div class="shead"><span class="stitle">Available now in Bangalore</span><div class="sline"></div><span id="icnt" style="font-size:12px; color:var(--t3)">0 items</span></div>
+    <div id="itemsGrid" class="gv"></div>
+  </div>
+  <div id="tab-mine" style="display:none">
+    <div id="mngrid" style="display:flex; flex-direction:column; gap:10px;"></div>
+  </div>
 </div>
 
-<!-- HOW IT WORKS -->
-<div class="how">
-  <div class="how-t">How BLR FreeStuff works</div>
-  <div class="how-g">
-    <div class="how-c"><div class="how-n">1</div><div class="how-i">📦</div><div class="how-h">Post your item</div><div class="how-p">Add a title, your area, and WhatsApp number. Takes under 30 seconds.</div></div>
-    <div class="how-c"><div class="how-n">2</div><div class="how-i">🔍</div><div class="how-h">Someone nearby finds it</div><div class="how-p">Neighbours browse and tap "I want this" to show interest in your item.</div></div>
-    <div class="how-c"><div class="how-n">3</div><div class="how-i">💬</div><div class="how-h">Connect on WhatsApp</div><div class="how-p">Coordinate pickup directly — no middlemen, no commission, no drama.</div></div>
-    <div class="how-c"><div class="how-n">4</div><div class="how-i">♻️</div><div class="how-h">Mark as given away</div><div class="how-p">Item finds a new home. Update your listing so others don't keep asking.</div></div>
-  </div>
-</div>
-
-<!-- SAFETY -->
-<div class="safety">
-  <div class="safety-b">
-    <div class="safety-i">🛡️</div>
-    <div>
-      <div class="safety-t">Stay safe during exchange</div>
-      <div class="stips">
-        <span class="stip">Meet in public spots</span>
-        <span class="stip">Bring a friend if unsure</span>
-        <span class="stip">Check the item before accepting</span>
-        <span class="stip">Never share OTPs or bank details</span>
-        <span class="stip">Trust your gut</span>
-        <span class="stip">Report anything suspicious</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="footer-w">
-  <footer>
-    <div class="fl">BLR FreeStuff</div>
-    <div>A community project · Made for Bangalore with ❤️ · <a href="#">How it works</a> · <a href="#">Safety tips</a> · <a href="#">Report abuse</a> · <a href="#">About</a></div>
-  </footer>
-</div>
-
-<button id="fab" onclick="openM('postModal')" title="Give something away">+</button>
-
-<!-- POST MODAL -->
 <div class="overlay" id="postModal" onclick="outerClick(event,'postModal')">
-  <div class="modal" style="max-width:500px">
-    <div class="mhead">
-      <div><div class="mtitle">Give something away 📦</div><div class="msub">30 seconds to post. Zero cost. Someone nearby will love you for it.</div></div>
-      <button class="mcls" onclick="closeM('postModal')">✕</button>
-    </div>
-    <div class="mbody">
-      <label class="flbl">What are you giving away? *</label>
-      <input class="finp" id="pt" type="text" placeholder="e.g. Solid wood dining table, 6-seater" maxlength="80" oninput="upChar('pt','ptc',80)">
-      <div class="charcnt"><span id="ptc">0</span>/80</div>
-      <label class="flbl">Describe it</label>
-      <textarea class="ftxa" id="pd" placeholder="Condition, dimensions, any defects, pickup notes — the more you say, the faster it goes" maxlength="400" oninput="upChar('pd','pdc',400)"></textarea>
-      <div class="charcnt"><span id="pdc">0</span>/400</div>
-      <div class="frow">
-        <div>
-          <label class="flbl">Category *</label>
-          <select class="fsl" id="pc"><option value="">Choose…</option><option>Furniture</option><option>Electronics</option><option>Clothes</option><option>Books</option><option>Kitchen</option><option>Sports</option><option>Baby &amp; Kids</option><option>Plants</option><option>Other</option></select>
-        </div>
-        <div>
-          <label class="flbl">Your area *</label>
-          <input class="finp" id="pa" type="text" placeholder="e.g. Koramangala" style="margin-bottom:0">
-        </div>
-      </div>
-      <label class="flbl" style="margin-top:14px">Condition</label>
-      <div class="cbs" id="condBtns">
-        <button class="cb" onclick="setC('Like New',this)">Like New</button>
-        <button class="cb active" onclick="setC('Good',this)">Good</button>
-        <button class="cb" onclick="setC('Fair',this)">Fair</button>
-        <button class="cb" onclick="setC('Parts Only',this)">Parts Only</button>
-      </div>
-      <div class="frow">
-        <div>
-          <label class="flbl">WhatsApp number *</label>
-          <input class="finp" id="pp" type="tel" placeholder="9876543210" style="margin-bottom:0">
-        </div>
-        <div>
-          <label class="flbl">Pickup preference</label>
-          <select class="fsl" id="ppu" style="margin-bottom:0"><option>Self-pickup only</option><option>I can drop nearby</option><option>Either works</option></select>
-        </div>
-      </div>
-      <label class="flbl" style="margin-top:14px">Tags <span style="color:var(--t3);text-transform:none;font-weight:400;letter-spacing:0">(optional)</span></label>
-      <input class="finp" id="ptg" type="text" placeholder="wooden, ikea, samsung — separate with commas">
-      <div class="fhint">Helps people find your item faster through search</div>
-      <button class="fsbmt" onclick="submitPost()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m22 2-7 20-4-9-9-4z"/></svg>
-        Post it — someone needs this
-      </button>
-    </div>
-  </div>
+  <div class="modal">
+    <h3 style="font-family:'Syne'; margin-bottom:15px;">Give something away 📦</h3>
+    <input class="finp" id="pt" placeholder="What are you giving?">
+    <textarea class="ftxa" id="pd" placeholder="Describe it (condition, dimensions...)"></textarea>
+    <select class="fsl" id="pc"><option value="Furniture">Furniture</option><option value="Electronics">Electronics</option><option value="Clothes">Clothes</option><option value="Books">Books</option><option value="Other">Other</option></select>
+    <input class="finp" id="pa" placeholder="Your Area (e.g. HSR Layout)">
+    <input class="finp" id="pp" placeholder="WhatsApp Number">
+    <button class="fsbmt" onclick="submitPost()">Post to Community</button>
+  </div>
 </div>
 
-<!-- REQUEST MODAL -->
-<div class="overlay" id="requestModal" onclick="outerClick(event,'requestModal')">
-  <div class="modal" style="max-width:440px">
-    <div class="mhead">
-      <div><div class="mtitle">Looking for something? 🙏</div><div class="msub">Tell the community — someone nearby might have exactly what you need.</div></div>
-      <button class="mcls" onclick="closeM('requestModal')">✕</button>
-    </div>
-    <div class="mbody">
-      <label class="flbl">What do you need? *</label>
-      <input class="finp" id="rt" type="text" placeholder="e.g. Washing machine, study desk, baby crib…">
-      <label class="flbl">Any specific requirements?</label>
-      <textarea class="ftxa" id="rd" placeholder="Brand preference, size, colour, how urgently you need it…" style="min-height:70px"></textarea>
-      <div class="frow">
-        <div>
-          <label class="flbl">Category</label>
-          <select class="fsl" id="rc"><option>Furniture</option><option>Electronics</option><option>Clothes</option><option>Books</option><option>Kitchen</option><option>Sports</option><option>Other</option></select>
-        </div>
-        <div>
-          <label class="flbl">Your area *</label>
-          <input class="finp" id="ra" type="text" placeholder="e.g. HSR Layout" style="margin-bottom:0">
-        </div>
-      </div>
-      <label class="flbl" style="margin-top:14px">WhatsApp number *</label>
-      <input class="finp" id="rp" type="tel" placeholder="9876543210">
-      <div class="fhint">People who have it will message you directly on WhatsApp</div>
-      <button class="fsbmt" onclick="submitReq()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21 15-4-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v9z"/></svg>
-        Post my request
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- DETAIL MODAL -->
-<div class="overlay" id="detailModal" onclick="outerClick(event,'detailModal')">
-  <div class="modal dmod">
-    <div id="dthb" class="dthumb"></div>
-    <button class="mcls" style="position:absolute;top:12px;right:12px;z-index:2" onclick="closeM('detailModal')">✕</button>
-    <div class="dbody">
-      <div class="dtags" id="dtags"></div>
-      <div class="urg" id="durg" style="display:none">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span id="durgt"></span>
-      </div>
-      <div class="dtitle" id="dttl"></div>
-      <div class="ddesc" id="ddsc"></div>
-      <div class="dinfo" id="dinf"></div>
-      <div class="dacts">
-        <button class="dwa" id="dwaB">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-          Message on WhatsApp
-        </button>
-        <button class="dshr" onclick="shareItem()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-          Share
-        </button>
-        <button class="drep" onclick="toast('Report submitted. We\'ll review within 24 hours.','🚩')">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
 <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
+
 <script>
-// 1. YOUR FIREBASE CONNECTION
 const firebaseConfig = {
-  apiKey: "AIzaSyAjyIedg2PavcyuKFRHu6byYnALSu4izBI",
-  authDomain: "blrfreestuff.firebaseapp.com",
-  databaseURL: "https://blrfreestuff-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "blrfreestuff",
-  storageBucket: "blrfreestuff.firebasestorage.app",
-  messagingSenderId: "597306242069",
-  appId: "1:597306242069:web:6b9bcde648d437ac85ca1c"
+  apiKey: "AIzaSyAjyIedg2PavcyuKFRHu6byYnALSu4izBI",
+  authDomain: "blrfreestuff.firebaseapp.com",
+  databaseURL: "https://blrfreestuff-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "blrfreestuff",
+  storageBucket: "blrfreestuff.firebasestorage.app",
+  messagingSenderId: "597306242069",
+  appId: "1:597306242069:web:6b9bcde648d437ac85ca1c"
 };
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// 2. EMPTY POSTS ARRAY (Will be filled by Firebase)
 let POSTS = [];
+const CI = {Furniture:'🪑',Electronics:'📱',Clothes:'👕',Books:'📚',Other:'🎁'};
+let aCat = 'All', srchQ = '';
 
-// 3. LISTEN FOR LIVE UPDATES
 db.ref('posts').on('value', (snapshot) => {
-  POSTS = [];
-  snapshot.forEach((childSnapshot) => {
-    POSTS.push(childSnapshot.val());
-  });
-  // Sort by newest first
-  POSTS.sort((a,b) => b.postedAt - a.postedAt);
-  render(); // Update the screen instantly!
+  POSTS = [];
+  snapshot.forEach((child) => {
+    POSTS.push({ id: child.key, ...child.val() });
+  });
+  POSTS.sort((a,b) => b.postedAt - a.postedAt);
+  render();
 });
-let aCat='All',aView='g',aCond='Good',srchQ='';
-const FAV=new Set(),MINE=[];
-const WA_SVG=`<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>`;
 
-function tAgo(ts){const d=(Date.now()-ts)/1e3;if(d<60)return'just now';if(d<3600)return Math.floor(d/60)+'m ago';if(d<86400)return Math.floor(d/3600)+'h ago';return Math.floor(d/86400)+'d ago'}
-function toast(m,i='✓'){document.getElementById('tmsg').textContent=m;document.getElementById('tico').textContent=i;const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800)}
-function openM(id){closeAll();document.getElementById(id).classList.add('open')}
+function render() {
+  let d = [...POSTS];
+  if(aCat !== 'All') d = d.filter(p => p.category === aCat);
+  if(srchQ) d = d.filter(p => p.title.toLowerCase().includes(srchQ.toLowerCase()));
+  
+  document.getElementById('icnt').textContent = d.length + ' items';
+  const g = document.getElementById('itemsGrid');
+  if(!d.length) { g.innerHTML = '<p style="text-align:center; padding:50px; color:var(--t3)">Nothing here yet. Be the first to give!</p>'; return; }
+  
+  g.innerHTML = d.map(p => `
+    <div class="icard">
+      <div class="cth">${CI[p.category]||'🎁'}<div class="cbadge">FREE</div></div>
+      <div class="cbody">
+        <div class="ctitle">${p.title}</div>
+        <div class="carea">📍 ${p.area}</div>
+        <button class="fsbmt" style="margin-top:10px; padding:8px; font-size:12px;" onclick="window.open('https://wa.me/91${p.phone}')">WhatsApp Owner</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function submitPost() {
+  const t = document.getElementById('pt').value.trim();
+  const a = document.getElementById('pa').value.trim();
+  const ph = document.getElementById('pp').value.trim();
+  const cat = document.getElementById('pc').value;
+  if(!t || !a || !ph) return toast('Fill all fields','⚠️');
+
+  const p = { title:t, area:a, phone:ph, category:cat, desc:document.getElementById('pd').value, postedAt:Date.now() };
+  db.ref('posts').push(p).then(() => {
+    closeM('postModal');
+    toast('Posted successfully! 🎉');
+  });
+}
+
+function goTab(t, btn) {
+  ['browse','mine'].forEach(x => document.getElementById('tab-'+x).style.display = x===t ? 'block' : 'none');
+  document.querySelectorAll('.ntab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function onSrch(v){srchQ=v; render();}
+function setCat(c,btn){aCat=c; document.querySelectorAll('.cpill').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); render();}
+function openM(id){document.getElementById(id).classList.add('open')}
 function closeM(id){document.getElementById(id).classList.remove('open')}
 function outerClick(e,id){if(e.target.id===id)closeM(id)}
-function togglePanel(n){closeAll();document.getElementById(n==='notif'?'notifPanel':'profilePanel').classList.toggle('open')}
-function closeAll(){['notifPanel','profilePanel'].forEach(id=>document.getElementById(id).classList.remove('open'))}
-document.addEventListener('click',e=>{if(!e.target.closest('#notifPanel')&&!e.target.closest('#nBtn')&&!e.target.closest('#profilePanel')&&!e.target.closest('.icon-btn'))closeAll()});
-function upChar(fi,ci,mx){const v=document.getElementById(fi).value.length;const el=document.getElementById(ci);el.textContent=v;el.style.color=v>mx*.85?'var(--am)':'var(--t3)'}
-function goTab(tab,el){
-  ['browse','requests','saved','mine'].forEach(t=>document.getElementById('tab-'+t).style.display=t===tab?'block':'none');
-  document.querySelectorAll('.ntab').forEach(b=>b.classList.remove('active'));
-  if(el)el.classList.add('active');
-  document.querySelectorAll(`[data-tab="${tab}"]`).forEach(b=>b.classList.add('active'));
-  if(tab==='requests')renderReqs();
-  if(tab==='saved')renderSaved();
-  if(tab==='mine')renderMine();
-}
-function render(){
-  let d=[...POSTS];
-  if(aCat!=='All')d=d.filter(p=>p.category===aCat);
-  if(srchQ){const q=srchQ.toLowerCase();d=d.filter(p=>p.title.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q)||p.area.toLowerCase().includes(q)||(p.tags||[]).some(t=>t.toLowerCase().includes(q)))}
-  const af=document.getElementById('aF').value;if(af)d=d.filter(p=>p.area===af);
-  const cf=document.getElementById('coF').value;if(cf)d=d.filter(p=>p.condition===cf);
-  const sf=document.getElementById('soF').value;
-  if(sf==='newest')d.sort((a,b)=>b.postedAt-a.postedAt);
-  else if(sf==='popular')d.sort((a,b)=>b.claims-a.claims);
-  else d.sort((a,b)=>a.area.localeCompare(b.area));
-  document.getElementById('icnt').textContent=d.length+' item'+(d.length!==1?'s':'');
-  document.getElementById('liveN').textContent=d.length;
-  const g=document.getElementById('itemsGrid');
-  g.className=aView==='g'?'gv':'lv';
-  if(!d.length){g.innerHTML='<div class="empty"><div class="empty-i">🔍</div><div class="empty-t">Nothing here yet</div><div class="empty-s">Try a different category, area or search term</div></div>';return}
-  g.innerHTML=d.map((p,i)=>card(p,i)).join('');
-}
-function card(p,i){
-  const pct=Math.min(100,p.claims*9);
-  const fav=FAV.has(p.id);
-  const lv=aView==='l';
-  return`<div class="icard${lv?' lv':''}" style="animation-delay:${i*.04}s">
-    <div class="cth">
-      ${CI[p.category]||'🎁'}
-      <div class="cbadge">FREE</div>
-      <div class="ccond">${p.condition}</div>
-      <div class="cfav${fav?' on':''}" onclick="togFav(event,${p.id})">${fav?'❤️':'🤍'}</div>
-    </div>
-    <div class="cbody" onclick="openDetail(${p.id})">
-      <div class="ch"><span class="ccat">${p.category}</span><span class="ctime">${tAgo(p.postedAt)}</span></div>
-      <div class="ctitle">${p.title}</div>
-      <div class="cdesc">${p.desc}</div>
-      <div class="cint"><div class="citr"><div class="cifl" style="width:${pct}%"></div></div><span class="cicnt">${p.claims} interested</span></div>
-      <div class="ctags">${(p.tags||[]).slice(0,3).map(t=>`<span class="ctag">${t}</span>`).join('')}</div>
-      <div class="cfoot">
-        <div class="carea"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${p.area}</div>
-        <div class="cbtns">
-          <button class="cbtn cbtn-c" onclick="event.stopPropagation();claimIt(${p.id})">I want this</button>
-          <button class="cbtn cbtn-w" onclick="event.stopPropagation();waOpen(${p.id})">${WA_SVG}</button>
-        </div>
-      </div>
-    </div>
-  </div>`;
-}
-function renderReqs(){
-  const g=document.getElementById('rqgrid');
-  g.innerHTML=REQS.map((r,i)=>`
-    <div class="rqcard" style="animation-delay:${i*.05}s">
-      <div class="rqico">🙏</div>
-      <div class="rqbody">
-        <div class="rqhead">
-          <div class="rqtitle">${r.title}${r.urgent?` <span class="rqpill rd" style="margin-left:4px">URGENT</span>`:''}</div>
-          <span class="rqtime">${tAgo(r.postedAt)}</span>
-        </div>
-        <div class="rqdesc">${r.desc||'No extra details added.'}</div>
-        <div class="rqfoot">
-          <div class="rqmeta">
-            <span style="font-size:12px;color:var(--t2)">📍 ${r.area}</span>
-            <span class="rqpill bl">${r.category}</span>
-            <span style="font-size:11px;color:var(--t3)">${r.responses} offer${r.responses!==1?'s':''}</span>
-          </div>
-          <button class="cbtn cbtn-w" style="display:flex;align-items:center;gap:5px;font-size:12px;padding:6px 12px" onclick="window.open('https://wa.me/91${r.phone}?text=Hi! I saw your request for: ${encodeURIComponent(r.title)} on BLR FreeStuff. I might have it!','_blank')">
-            ${WA_SVG} I have this!
-          </button>
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
-function renderSaved(){
-  const g=document.getElementById('svgrid');
-  const fp=POSTS.filter(p=>FAV.has(p.id));
-  if(!fp.length){g.innerHTML='<div class="empty" style="grid-column:1/-1"><div class="empty-i">❤️</div><div class="empty-t">Nothing saved yet</div><div class="empty-s">Tap 🤍 on any item to bookmark it here</div></div>';return}
-  const old=aView;aView='g';g.innerHTML=fp.map((p,i)=>card(p,i)).join('');aView=old;
-}
-function renderMine(){
-  const g=document.getElementById('mngrid');
-  if(!MINE.length){g.innerHTML='<div class="empty"><div class="empty-i">📦</div><div class="empty-t">You haven\'t posted anything yet</div><div class="empty-s">Give something away and make someone\'s day</div></div>';return}
-  g.innerHTML=[...MINE].reverse().map((p,i)=>`
-    <div class="mycard" style="animation-delay:${i*.04}s">
-      <div class="myico">${CI[p.category]||'🎁'}</div>
-      <div class="mybody">
-        <div class="myhead">
-          <div class="mytitle">${p.title}</div>
-          <span class="mystatus ${p.given?'given':'active'}">${p.given?'GIVEN AWAY':'ACTIVE'}</span>
-        </div>
-        <div class="mymeta">📍 ${p.area} · ${p.category} · ${p.claims} interested · ${tAgo(p.postedAt)}</div>
-        ${!p.given?`<div class="myacts">
-          <button class="myact" onclick="markGiven(${p.id})">✓ Mark as given away</button>
-          <button class="myact danger" onclick="delItem(${p.id})">Delete listing</button>
-        </div>`:`<div style="font-size:12px;color:var(--t3)">Thanks for sharing! You helped reduce waste and made someone happy. 🌍</div>`}
-      </div>
-    </div>
-  `).join('');
-}
-function openDetail(id){
-  const p=POSTS.find(x=>x.id===id);if(!p)return;
-  document.getElementById('dthb').textContent=CI[p.category]||'🎁';
-  document.getElementById('dttl').textContent=p.title;
-  document.getElementById('ddsc').textContent=p.desc;
-  document.getElementById('dtags').innerHTML=`
-    <span class="dtag gr">✓ Free to take</span>
-    <span class="dtag am">${p.condition}</span>
-    <span class="dtag bl">${p.category}</span>
-    ${p.claims>6?'<span class="dtag rd">🔥 High demand</span>':''}
-  `;
-  const urg=p.claims>6;
-  document.getElementById('durg').style.display=urg?'flex':'none';
-  if(urg)document.getElementById('durgt').textContent=`${p.claims} people are interested — act fast!`;
-  document.getElementById('dinf').innerHTML=`
-    <div class="dir"><span class="dik">Location</span><span class="div">📍 ${p.area}</span></div>
-    <div class="dir"><span class="dik">Condition</span><span class="div">${p.condition}</span></div>
-    <div class="dir"><span class="dik">Pickup</span><span class="div">${p.pickup||'Self-pickup only'}</span></div>
-    <div class="dir"><span class="dik">People interested</span><span class="div">${p.claims} neighbour${p.claims!==1?'s':''}</span></div>
-    <div class="dir"><span class="dik">Posted</span><span class="div">${tAgo(p.postedAt)}</span></div>
-    ${(p.tags||[]).length?`<div class="dir"><span class="dik">Tags</span><span class="div">${p.tags.join(', ')}</span></div>`:''}
-  `;
-  document.getElementById('dwaB').onclick=()=>window.open(`https://wa.me/91${p.phone}?text=Hi! I saw your free "${p.title}" on BLR FreeStuff — is it still available?`,'_blank');
-  p.claims++;
-  openM('detailModal');render();
-}
-function togFav(e,id){
-  e.stopPropagation();
-  FAV.has(id)?(FAV.delete(id),toast('Removed from saved','🤍')):(FAV.add(id),toast('Saved! Check your Saved tab','❤️'));
-  render();renderSaved();
-}
-function claimIt(id){const p=POSTS.find(x=>x.id===id);if(p)p.claims++;toast('Noted! Now contact via WhatsApp to arrange pickup','📦');render()}
-function waOpen(id){const p=POSTS.find(x=>x.id===id);if(p)window.open(`https://wa.me/91${p.phone}?text=Hi! I saw your free "${p.title}" on BLR FreeStuff — still available?`,'_blank')}
-function setCat(cat,el){aCat=cat;document.querySelectorAll('.cpill').forEach(p=>p.classList.remove('active'));el.classList.add('active');render()}
-function setView(v){aView=v;document.getElementById('gvb').classList.toggle('active',v==='g');document.getElementById('lvb').classList.toggle('active',v==='l');render()}
-function onSrch(v){srchQ=v;render()}
-function setC(v,el){aCond=v;document.querySelectorAll('.cb').forEach(b=>b.classList.remove('active'));el.classList.add('active')}
-function shareItem(){if(navigator.share)navigator.share({title:'Free item on BLR FreeStuff',url:window.location.href});else navigator.clipboard.writeText(window.location.href).then(()=>toast('Link copied!','🔗'))}
-function clearNotifs(){document.querySelectorAll('.notif-item').forEach(el=>el.classList.remove('unread'));document.querySelectorAll('.ndot').forEach(d=>{d.classList.remove('new');d.classList.add('old')});document.getElementById('ndot').style.display='none';toast('All caught up!','🔔')}
-function markGiven(id){const p=MINE.find(x=>x.id===id);if(p){p.given=true;POSTS=POSTS.filter(x=>x.id!==id)}renderMine();render();toast('Marked as given away 🙌','✅')}
-function delItem(id){const idx=MINE.findIndex(x=>x.id===id);if(idx>-1)MINE.splice(idx,1);POSTS=POSTS.filter(x=>x.id!==id);renderMine();render();toast('Listing removed','🗑️')}
-function submitPost(){
-  const t=document.getElementById('pt').value.trim();
-  const a=document.getElementById('pa').value.trim();
-  const ph=document.getElementById('pp').value.trim();
-  const cat=document.getElementById('pc').value;
-  if(!t||!a||!ph||!cat){toast('Please fill in all required fields','⚠️');return}
-  const tags=document.getElementById('ptg').value.split(',').map(s=>s.trim()).filter(Boolean);
-  const p={id:Date.now(),title:t,area:a,phone:ph,category:cat,desc:document.getElementById('pd').value.trim()||'No description provided.',condition:aCond,pickup:document.getElementById('ppu').value,tags,claims:0,postedAt:Date.now(),mine:true,given:false};
-  POSTS.unshift(p);MINE.push(p);
-  closeM('postModal');
-  document.getElementById('postModal').querySelectorAll('input,textarea').forEach(el=>el.value='');
-  document.getElementById('pc').value='';
-  aCond='Good';document.querySelectorAll('.cb').forEach(b=>b.classList.toggle('active',b.textContent.trim()==='Good'));
-  render();renderMine();
-  toast('Posted! Neighbours can now find it 🎉','📦');
-}
-function submitReq(){
-  const t=document.getElementById('rt').value.trim();
-  const a=document.getElementById('ra').value.trim();
-  const ph=document.getElementById('rp').value.trim();
-  if(!t||!a||!ph){toast('Please fill in all required fields','⚠️');return}
-  REQS.unshift({id:Date.now(),title:t,area:a,phone:ph,category:document.getElementById('rc').value,desc:document.getElementById('rd').value.trim(),postedAt:Date.now(),responses:0,urgent:false});
-  closeM('requestModal');
-  document.getElementById('requestModal').querySelectorAll('input,textarea').forEach(el=>el.value='');
-  document.getElementById('rqBadge').textContent=REQS.length;
-  toast('Request posted! Someone will reach out 🙏','💬');
-}
-function animN(id,target){
-  const el=document.getElementById(id);if(!el)return;
-  let c=0;const step=target/60;
-  const ti=setInterval(()=>{c+=step;if(c>=target){el.textContent=target;clearInterval(ti)}else el.textContent=Math.floor(c)},18);
-}
-document.addEventListener('DOMContentLoaded',()=>{
-  render();
-  animN('hs1',1247);animN('hs2',892);animN('hs3',24);animN('hs4',18);
-});
+function toast(m,i='✓'){const t=document.getElementById('toast');document.getElementById('tmsg').textContent=m;document.getElementById('tico').textContent=i;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
 </script>
 </body>
 </html>
